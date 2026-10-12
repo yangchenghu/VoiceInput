@@ -1,6 +1,8 @@
 # 轻语
 
-macOS 菜单栏语音输入工具。按住右 Command 说话，松开后把语音转成文字，输入到当前输入框。默认不读写剪贴板。
+用 AI coding 练手做的 macOS 语音输入小工具。平时主要用闪电说，觉得有点臃肿，就自己做了更轻的一版：按住快捷键说话，松开后把文字打进当前输入框，默认不碰剪贴板。欢迎试用。
+
+按住右 Command 说话，松开后把语音转成文字，输入到当前输入框。
 
 ## 环境
 
@@ -89,3 +91,7 @@ open build/DerivedData/Build/Products/Debug/InsertSpike.app
 | 协议帧、状态机、快捷键逻辑、Unicode 分片、纠错回退、剪贴板恢复策略 | 单元测试已通过 |
 | 右 Command 和 Cursor 实际输入 | 需要在本机打开 HotkeySpike、InsertSpike 看，见 [docs/阶段A验证记录.md](docs/阶段A验证记录.md) |
 | 豆包真实账号和端到端延迟 | 需要你在设置里保存凭证后试，见 [docs/实机验收清单.md](docs/实机验收清单.md) |
+
+## 协议
+
+[MIT License](LICENSE)
