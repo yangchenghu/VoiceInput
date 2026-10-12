@@ -1,0 +1,122 @@
+name: VoiceInput
+options:
+  bundleIdPrefix: com.qingyu
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: "57FVQX3F2U"
+    CODE_SIGN_IDENTITY: "Apple Development"
+    ENABLE_APP_SANDBOX: NO
+    ENABLE_HARDENED_RUNTIME: YES
+    CODE_SIGN_INJECT_BASE_ENTITLEMENTS: NO
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 0.1.0
+    OTHER_LDFLAGS: "-lz"
+    SWIFT_OBJC_BRIDGING_HEADER: App/VoiceInput-Bridging-Header.h
+targets:
+  VoiceInput:
+    type: application
+    platform: macOS
+    sources:
+      - path: App
+        excludes:
+          - Info.plist
+          - VoiceInput.entitlements
+          - VoiceInput-Bridging-Header.h
+      - path: Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.qingyu.voiceinput
+        PRODUCT_NAME: VoiceInput
+        PRODUCT_MODULE_NAME: VoiceInput
+        INFOPLIST_FILE: App/Info.plist
+        CODE_SIGN_ENTITLEMENTS: App/VoiceInput.entitlements
+        GENERATE_INFOPLIST_FILE: NO
+        ENABLE_TESTABILITY: YES
+  HotkeySpike:
+    type: application
+    platform: macOS
+    sources:
+      - path: Spikes/HotkeySpike
+      - path: Sources/Hotkey
+      - path: Sources/Core/EventMark.swift
+      - path: Sources/Core/AppLog.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.qingyu.voiceinput.hotkeyspike
+        PRODUCT_NAME: HotkeySpike
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_NSPrincipalClass: NSApplication
+        INFOPLIST_KEY_CFBundleDisplayName: HotkeySpike
+        INFOPLIST_KEY_LSMinimumSystemVersion: "14.0"
+        CODE_SIGN_ENTITLEMENTS: App/VoiceInput.entitlements
+  InsertSpike:
+    type: application
+    platform: macOS
+    sources:
+      - path: Spikes/InsertSpike
+      - path: Sources/Core/EventMark.swift
+      - path: Sources/Insertion/UnicodeChunker.swift
+      - path: Sources/Insertion/UnicodeTyper.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.qingyu.voiceinput.insertspike
+        PRODUCT_NAME: InsertSpike
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_NSPrincipalClass: NSApplication
+        INFOPLIST_KEY_CFBundleDisplayName: InsertSpike
+        INFOPLIST_KEY_LSMinimumSystemVersion: "14.0"
+        CODE_SIGN_ENTITLEMENTS: App/VoiceInput.entitlements
+  VoiceInputTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: Tests
+      - path: Sources/Core/SessionReducer.swift
+      - path: Sources/Core/SessionLimits.swift
+      - path: Sources/Hotkey/HotkeyBinding.swift
+      - path: Sources/Hotkey/HotkeyStateMachine.swift
+      - path: Sources/Hotkey/HotkeyCapture.swift
+      - path: Sources/ASR/Gzip.swift
+      - path: Sources/ASR/DoubaoProtocol.swift
+      - path: Sources/ASR/ASRResultParser.swift
+      - path: Sources/Correction/CorrectionPolicy.swift
+      - path: Sources/Insertion/UnicodeChunker.swift
+      - path: Sources/Insertion/ClipboardRestorePolicy.swift
+      - path: Sources/Audio/BoundedAudioBuffer.swift
+      - path: Sources/Audio/AudioLevel.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.qingyu.voiceinput.tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies: []
+schemes:
+  VoiceInput:
+    build:
+      targets:
+        VoiceInput: all
+        VoiceInputTests: [test]
+    run:
+      config: Debug
+    test:
+      targets:
+        - VoiceInputTests
+  HotkeySpike:
+    build:
+      targets:
+        HotkeySpike: all
+    run:
+      config: Debug
+  InsertSpike:
+    build:
+      targets:
+        InsertSpike: all
+    run:
+      config: Debug

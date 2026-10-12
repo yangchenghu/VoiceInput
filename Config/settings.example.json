@@ -1,0 +1,19 @@
+{
+  "asrEndpoint": "wss://openspeech.bytedance.com/api/v3/sauc/bigmodel_async",
+  "asrResourceID": "volc.seedasr.sauc.duration",
+  "asrAuthMode": "apiKey",
+  "apiKey": "",
+  "legacyAppID": "",
+  "legacyAccessToken": "",
+  "correctionEnabled": false,
+  "correctionBaseURL": "",
+  "correctionModel": "",
+  "correctionAPIKey": "",
+  "recordMode": "hold",
+  "insertionMode": "unicode",
+  "hotkey": {
+    "keyCode": null,
+    "modifiers": 1,
+    "requireRightCommand": true
+  }
+}
